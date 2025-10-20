@@ -23,10 +23,11 @@ function AddBox(props) {
       text: "",
       time: "",
     })
+    props.activation();
     e.preventDefault();
   }
   return (
-    <div>
+    <div className={props.active ? 'add-box active' : 'add-box'}>
       <form>
         <input name="text" onChange={handleChange} type="text" id='text-input' placeholder='Task Name' />
         <input name="time" onChange={handleChange} type="text" id='time-input' placeholder='Task Time' />

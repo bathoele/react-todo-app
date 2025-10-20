@@ -6,6 +6,11 @@ import Task from './Task.jsx';
 
 function App() {
   const [tasks, setTasks] = useState([]);
+  const [isActive, setIsActive] = useState(false);
+
+  const actify = () => {
+    setIsActive(current => !current);
+  }
 
   const addTask = (task) => {
     setTasks((prevTasks) => {
@@ -27,7 +32,6 @@ function App() {
     <div>
       <TimerBox />
       <div className='task-box'>
-        {/* map through tasks arr */}
         {tasks.map((taskItem, index) => {
           return (
             <Task
@@ -39,8 +43,12 @@ function App() {
             />
           )
         })}
-        <button className='add-btn'>+</button>
-        <AddBox add={addTask} />
+        <button className='add-btn' onClick={actify}>+</button>
+        <AddBox
+        add={addTask}
+        active={isActive}
+        activation={actify}
+        />
       </div>
     </div>
   )
