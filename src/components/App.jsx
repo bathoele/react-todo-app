@@ -1,7 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 
 function App() {
+  const [isActive, setIsActive] = useState(false);
+
+  const handleClick = event => {
+    setIsActive(current => !current);
+  }
+
   return (
     <div>
       <div className='timer-box'>
@@ -13,11 +19,16 @@ function App() {
         </div>
       </div>
       <div className='task-box'>
-        <div className='task'>
-          <p className='title'></p>
-          <p className='time-set'></p>
+        {/* map through tasks arr */}
+        <button className='add-btn' onClick={handleClick}>+</button>
+        {/* adds an empty task to tasks arr */}
+        <div className={isActive ? 'add-box active' : 'add-box'}>
+          <form>
+            <input type="text" id='text-input' placeholder='Task Name' />
+            <input type="text" id='time-input' placeholder='Task Time' />
+            <button>Add</button>
+          </form>
         </div>
-        <button className='add-btn'>+</button>
       </div>
     </div>
   )

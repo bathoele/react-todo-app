@@ -1,3 +1,17 @@
 body {
   background-color: lightskyblue;
 }
+
+.add-box {
+  background-color: rgba(0, 0, 0, 0.473);
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: none;
+}
+
+.add-box.active {
+  display: block;
+}
