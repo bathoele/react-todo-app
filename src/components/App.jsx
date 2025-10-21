@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
 import './App.css';
 import AddBox from './AddBox.jsx';
-import TimerBox from './TimerBox.jsx';
+import Timer from './Timer.jsx';
 import Task from './Task.jsx';
 
 function App() {
   const [tasks, setTasks] = useState([]);
   const [isActive, setIsActive] = useState(false);
+
+  const countdown = () => {
+
+  }
 
   const actify = () => {
     setIsActive(current => !current);
@@ -30,7 +34,11 @@ function App() {
 
   return (
     <div>
-      <TimerBox />
+      <div className='timer-box'>
+        {/* Work out the timer in App.jsx first, then make it a component */}
+        <h1 className='timer' id='timer'></h1>
+        <button>START</button>
+      </div>
       <div className='task-box'>
         {tasks.map((taskItem, index) => {
           return (
