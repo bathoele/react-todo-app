@@ -9,7 +9,17 @@ function App() {
   const [isActive, setIsActive] = useState(false);
 
   const countdown = () => {
+    let count = tasks[0].time;
+    console.log(tasks[0].time);
 
+    const decrementer = () => {
+      console.log("yee");
+    }
+    let inter = setInterval(decrementer, 1000);
+      
+    if (count == 0) {
+      clearInterval(inter);
+    }
   }
 
   const actify = () => {
@@ -37,7 +47,7 @@ function App() {
       <div className='timer-box'>
         {/* Work out the timer in App.jsx first, then make it a component */}
         <h1 className='timer' id='timer'></h1>
-        <button>START</button>
+        <button onClick={countdown}>START</button>
       </div>
       <div className='task-box'>
         {tasks.map((taskItem, index) => {
