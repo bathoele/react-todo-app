@@ -9,17 +9,21 @@ function App() {
   const [isActive, setIsActive] = useState(false);
 
   const countdown = () => {
+    let timeDisplay = document.getElementById("timer");
     let count = tasks[0].time;
-    console.log(tasks[0].time);
+    timeDisplay.textContent = count;
 
     const decrementer = () => {
-      console.log("yee");
+      if (count == 0) {
+        clearInterval(inter);
+        return;
+      }
+      count--;
+      console.log(count);
+      timeDisplay.textContent = count;
     }
     let inter = setInterval(decrementer, 1000);
-      
-    if (count == 0) {
-      clearInterval(inter);
-    }
+    
   }
 
   const actify = () => {
