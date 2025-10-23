@@ -8,10 +8,14 @@ function App() {
   const [tasks, setTasks] = useState([]);
   const [isActive, setIsActive] = useState(false);
 
-  const countdown = () => {
+  const updateTimer = (count) => {
     let timeDisplay = document.getElementById("timer");
-    let count = tasks[0].time;
     timeDisplay.textContent = count;
+  }
+
+  const countdown = () => {
+    let count = tasks[0].time;
+    updateTimer(count);
 
     const decrementer = () => {
       if (count == 0) {
@@ -19,11 +23,9 @@ function App() {
         return;
       }
       count--;
-      console.log(count);
-      timeDisplay.textContent = count;
+      updateTimer(count);
     }
     let inter = setInterval(decrementer, 1000);
-    
   }
 
   const actify = () => {
