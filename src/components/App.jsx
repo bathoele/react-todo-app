@@ -7,6 +7,8 @@ import Task from './Task.jsx';
 function App() {
   const [tasks, setTasks] = useState([]);
   const [isActive, setIsActive] = useState(false);
+  const [isCounting, setIsCounting] = useState(false);
+  const [pauseTime, setPauseTime] = useState(0);
 
   const updateTimer = (count) => {
     let timeDisplay = document.getElementById("timer");
@@ -14,18 +16,34 @@ function App() {
   }
 
   const countdown = () => {
-    let count = tasks[0].time;
+    let count = pauseTime > 0 ? pauseTime : tasks[0].time;
     updateTimer(count);
 
     const decrementer = () => {
-      if (count == 0) {
+      if (count === 0) {
+        clearInterval(inter);
+        setPauseTime(count);
+        setIsCounting(false);
+        return;
+      } else if (isCounting === false) {
+        console.log(isCounting);
         clearInterval(inter);
         return;
       }
       count--;
       updateTimer(count);
+      setPauseTime(count);
     }
     let inter = setInterval(decrementer, 1000);
+  }
+
+  const pausePlay = () => {
+    if (isCounting === false) {
+      setIsCounting(true);
+      countdown();
+    } else {
+      setIsCounting(false);
+    }
   }
 
   const actify = () => {
@@ -53,7 +71,9 @@ function App() {
       <div className='timer-box'>
         {/* Work out the timer in App.jsx first, then make it a component */}
         <h1 className='timer' id='timer'></h1>
-        <button onClick={countdown}>START</button>
+        <button onClick={pausePlay} className={!isCounting ? 'startBtn active' : 'startBtn'}>START</button>
+        {/* pause button that appears in place of the start button */}
+        <button onClick={pausePlay} className={isCounting ? 'pauseBtn active' : 'pauseBtn'}>PAUSE</button>
       </div>
       <div className='task-box'>
         {tasks.map((taskItem, index) => {

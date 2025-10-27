@@ -15,3 +15,11 @@ body {
 .add-box.active {
   display: block;
 }
+
+.startBtn, .pauseBtn {
+  display: none;
+}
+
+.startBtn.active, .pauseBtn.active {
+  display: block;
+}
